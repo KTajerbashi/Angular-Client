@@ -1,0 +1,1 @@
+interface IUserGetQuery extends IBaseQuery {}
