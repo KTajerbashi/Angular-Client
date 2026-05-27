@@ -1,0 +1,71 @@
+<!-- Main Layout Structure -->
+<div class="app-container">
+  <!-- Header with Navigation -->
+  <header class="main-header">
+    <div class="header-container">
+      <!-- Logo/Brand -->
+      <div class="logo">
+        <a routerLink="/" (click)="closeMobileMenu()">
+          <span class="logo-icon">🚀</span>
+          <span class="logo-text">AngularApp</span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav">
+        @for (item of navItems; track item.path) {
+          <a 
+            [routerLink]="item.path" 
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}"
+            class="nav-link">
+            <span class="nav-icon">{{ item.icon }}</span>
+            <span>{{ item.label }}</span>
+          </a>
+        }
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        class="mobile-menu-btn" 
+        (click)="toggleMobileMenu()"
+        [class.active]="isMobileMenuOpen">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation (Dropdown) -->
+    @if (isMobileMenuOpen) {
+      <nav class="mobile-nav" (click)="closeMobileMenu()">
+        @for (item of navItems; track item.path) {
+          <a 
+            [routerLink]="item.path" 
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}"
+            class="mobile-nav-link">
+            <span class="nav-icon">{{ item.icon }}</span>
+            <span>{{ item.label }}</span>
+          </a>
+        }
+      </nav>
+    }
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p>&copy; {{ currentYear }} AngularApp. All rights reserved.</p>
+        <div class="footer-links">
+          <a routerLink="/privacy">Privacy Policy</a>
+          <a routerLink="/terms">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
