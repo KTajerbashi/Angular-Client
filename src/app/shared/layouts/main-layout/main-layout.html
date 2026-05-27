@@ -1,70 +1,122 @@
-<!-- Main Layout Structure -->
+<!-- main-layout.html -->
 <div class="app-container">
   <!-- Header with Navigation -->
   <header class="main-header">
     <div class="header-container">
-      <!-- Logo/Brand -->
+      <!-- Logo / Brand -->
       <div class="logo">
-        <a routerLink="/" (click)="closeMobileMenu()">
-          <span class="logo-icon">🚀</span>
+        <a routerLink="/" class="logo-link">
+          <span class="logo-icon">✨</span>
           <span class="logo-text">AngularApp</span>
         </a>
       </div>
 
       <!-- Desktop Navigation -->
       <nav class="desktop-nav">
-        @for (item of navItems; track item.path) {
-          <a 
-            [routerLink]="item.path" 
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact: true}"
-            class="nav-link">
-            <span class="nav-icon">{{ item.icon }}</span>
-            <span>{{ item.label }}</span>
-          </a>
-        }
+        <ul class="nav-list">
+          @for (item of navItems; track item.path) {
+            <li class="nav-item">
+              <a
+                [routerLink]="item.path"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="nav-link"
+                (click)="closeMobileMenu()"
+              >
+                <span class="nav-icon">{{ item.icon }}</span>
+                <span class="nav-label">{{ item.label }}</span>
+              </a>
+            </li>
+          }
+        </ul>
       </nav>
 
-      <!-- Mobile Menu Button -->
-      <button 
-        class="mobile-menu-btn" 
+      <!-- Mobile Menu Toggle Button -->
+      <button
+        class="mobile-menu-toggle"
         (click)="toggleMobileMenu()"
-        [class.active]="isMobileMenuOpen">
-        <span class="hamburger"></span>
+        [attr.aria-label]="isMobileMenuOpen ? 'Close menu' : 'Open menu'"
+        aria-expanded="{{ isMobileMenuOpen }}"
+      >
+        <span class="hamburger-icon" [class.open]="isMobileMenuOpen">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
       </button>
     </div>
 
-    <!-- Mobile Navigation (Dropdown) -->
-    @if (isMobileMenuOpen) {
-      <nav class="mobile-nav" (click)="closeMobileMenu()">
+    <!-- Mobile Navigation Overlay -->
+    <div
+      class="mobile-nav-overlay"
+      [class.open]="isMobileMenuOpen"
+      (click)="closeMobileMenu()"
+    ></div>
+
+    <!-- Mobile Navigation Menu -->
+    <nav class="mobile-nav" [class.open]="isMobileMenuOpen">
+      <div class="mobile-nav-header">
+        <span class="mobile-logo">Menu</span>
+        <button class="close-menu-btn" (click)="closeMobileMenu()">✕</button>
+      </div>
+      <ul class="mobile-nav-list">
         @for (item of navItems; track item.path) {
-          <a 
-            [routerLink]="item.path" 
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact: true}"
-            class="mobile-nav-link">
-            <span class="nav-icon">{{ item.icon }}</span>
-            <span>{{ item.label }}</span>
-          </a>
+          <li class="mobile-nav-item">
+            <a
+              [routerLink]="item.path"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="mobile-nav-link"
+              (click)="closeMobileMenu()"
+            >
+              <span class="mobile-nav-icon">{{ item.icon }}</span>
+              <span class="mobile-nav-label">{{ item.label }}</span>
+            </a>
+          </li>
         }
-      </nav>
-    }
+      </ul>
+    </nav>
   </header>
 
   <!-- Main Content Area -->
   <main class="main-content">
-    <router-outlet></router-outlet>
+    <div class="content-container">
+      <router-outlet></router-outlet>
+    </div>
   </main>
 
   <!-- Footer -->
   <footer class="main-footer">
     <div class="footer-container">
       <div class="footer-content">
-        <p>&copy; {{ currentYear }} AngularApp. All rights reserved.</p>
-        <div class="footer-links">
-          <a routerLink="/privacy">Privacy Policy</a>
-          <a routerLink="/terms">Terms of Service</a>
+        <div class="footer-section">
+          <h3>AngularApp</h3>
+          <p>Modern Angular 21 application with responsive design.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="GitHub">💻</a>
+            <a href="#" aria-label="LinkedIn">🔗</a>
+          </div>
         </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            @for (item of navItems; track item.path) {
+              <li>
+                <a [routerLink]="item.path" (click)="closeMobileMenu()">{{ item.label }}</a>
+              </li>
+            }
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>📧 hello@angularapp.com</p>
+          <p>📞 +1 (555) 123-4567</p>
+          <p>📍 123 Angular Street, Dev City</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {{ currentYear }} AngularApp. All rights reserved.</p>
       </div>
     </div>
   </footer>
