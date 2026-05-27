@@ -1,1 +1,149 @@
-<p>services works!</p>
+<div class="app-container">
+  <div class="app-content">
+    <button (click)="onGet()" class="btn btn-primary">Get All Users</button>
+    <button (click)="onGetById()" class="btn btn-info">Get User by ID</button>
+    <button (click)="onPost()" class="btn btn-success">Create User</button>
+    <button (click)="onPut()" class="btn btn-warning">Update User</button>
+    <button (click)="onDelete()" class="btn btn-danger">Delete User</button>
+  </div>
+
+  <div class="app-content">
+    <h3>User List</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Mobile</th>
+          <th>National Code</th>
+          <th class="table-action">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of datasource(); track user.id) {
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.mobile }}</td>
+            <td>{{ user.nationalCode }}</td>
+            <td>
+              <button (click)="editUser(user)" class="btn btn-sm btn-warning">Edit</button>
+              <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger">Delete</button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="8" class="text-center">No users found</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="app-content">
+    <h3>{{ isEditing() ? 'Edit User' : 'Create New User' }}</h3>
+    <form (ngSubmit)="saveUser()" class="user-form">
+      <div class="app-grid">
+        <div class="app-width-1-2">
+          <div class="form-group">
+            <label class="form-label form-label-required">First Name:</label>
+            <input
+              class="form-input"
+              type="text"
+              [(ngModel)]="model().firstName"
+              name="firstName"
+              required
+            />
+          </div>
+        </div>
+        <div class="app-width-1-2">
+          <div class="form-group">
+            <label class="form-label form-label-required">Last Name:</label>
+            <input
+              class="form-input"
+              type="text"
+              [(ngModel)]="model().lastName"
+              name="lastName"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="app-grid">
+        <div class="app-width-1-2">
+          <div class="form-group">
+            <label class="form-label form-label-required">Email:</label>
+            <input
+              class="form-input"
+              type="email"
+              [(ngModel)]="model().email"
+              name="email"
+              required
+            />
+          </div>
+        </div>
+        <div class="app-width-1-2">
+          <div class="form-group">
+            <label class="form-label form-label-required">Phone:</label>
+            <input class="form-input" type="text" [(ngModel)]="model().phone" name="phone" />
+          </div>
+        </div>
+      </div>
+
+      <div class="app-grid">
+        <div class="app-width-1-2">
+          <div class="form-group">
+            <label class="form-label form-label-required">Mobile:</label>
+            <input
+              class="form-input"
+              type="text"
+              [(ngModel)]="model().mobile"
+              name="mobile"
+              required
+            />
+          </div>
+        </div>
+        <div class="app-width-1-2">
+          <div class="form-group">
+            <label class="form-label form-label-required">National Code:</label>
+            <input
+              class="form-input"
+              type="text"
+              [(ngModel)]="model().nationalCode"
+              name="nationalCode"
+              required
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="app-grid">
+        <div class="app-width-1-2">
+          <div class="form-group">
+            <label class="form-label form-label-required">Image ID:</label>
+            <input class="form-input" type="number" [(ngModel)]="model().imageId" name="imageId" />
+          </div>
+        </div>
+        <div class="app-width-1-2">
+          <div class="form-group">
+            <label class="form-label form-label-required">Sign ID:</label>
+            <input class="form-input" type="number" [(ngModel)]="model().signId" name="signId" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+          {{ isEditing() ? 'Update' : 'Create' }}
+        </button>
+        <button type="button" (click)="clearForm()" class="btn btn-secondary">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
