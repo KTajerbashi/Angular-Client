@@ -1,0 +1,74 @@
+{
+  "user": [
+    {
+      "firstName": "John1",
+      "lastName": "Doe1",
+      "email": "john.doe@mail.com",
+      "phone": "+1-555-0102",
+      "mobile": "+1-555-123-4568",
+      "nationalCode": "US-JD-19850102",
+      "imageId": 103,
+      "signId": 1003,
+      "id": "14mPEeEPnsg",
+      "entityId": ""
+    },
+    {
+      "id": "24mPEeEPnsg",
+      "entityId": "",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jane.smith@example.com",
+      "phone": "+1-555-0102",
+      "mobile": "+1-555-234-5678",
+      "nationalCode": "US-JS-19880220",
+      "imageId": 102,
+      "signId": 1002,
+      "role": "User",
+      "createdAt": "2024-02-20",
+      "isActive": true
+    },
+    {
+      "id": "34mPEeEPnsg",
+      "entityId": "",
+      "firstName": "Bob",
+      "lastName": "Johnson",
+      "email": "bob.johnson@example.com",
+      "phone": "+1-555-0103",
+      "mobile": "+1-555-345-6789",
+      "nationalCode": "US-BJ-19900310",
+      "imageId": 103,
+      "signId": 1003,
+      "role": "Manager",
+      "createdAt": "2024-03-10",
+      "isActive": true
+    },
+    {
+      "id": "44mPEeEPnsg",
+      "entityId": "",
+      "firstName": "Sarah",
+      "lastName": "Williams",
+      "email": "sarah.williams@example.com",
+      "phone": "+1-555-0104",
+      "mobile": "+1-555-456-7890",
+      "nationalCode": "US-SW-19950525",
+      "imageId": 104,
+      "signId": 1004,
+      "role": "User",
+      "createdAt": "2024-04-05",
+      "isActive": true
+    },
+    {
+      "firstName": "Michael1",
+      "lastName": "Brown1",
+      "email": "michael.brown@example.com",
+      "phone": "+1-555-0105",
+      "mobile": "+1-555-567-8901",
+      "nationalCode": "US-MB-19871112",
+      "imageId": 105,
+      "signId": 1005,
+      "id": "54mPEeEPnsg",
+      "entityId": ""
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
